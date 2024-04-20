@@ -1,48 +1,54 @@
-﻿namespace Project;
-public class Print
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Project
 {
-    public static void PrintMatrix(int[,] matrix, List<string> vertexNames, string matrixName)
+    public class Print
     {
-        var n = matrix.GetLength(0);
-        var maxVertexNameLength = vertexNames.Max(name => name.Length);
-        var matrixWidth = 4 * n + 1;
-        Console.WriteLine($"\n{matrixName}");
-
-        Console.Write("".PadRight(maxVertexNameLength + 2));
-        foreach (var name in vertexNames)
+        public static void PrintMatrix(int[,] matrix, List<int> vertexNames, string matrixName)
         {
-            Console.Write($" {name} ");
-        }
-        Console.WriteLine();
+            var n = matrix.GetLength(0);
+            var maxVertexNameLength = vertexNames.Max().ToString().Length; // змінено
+            var matrixWidth = 4 * n + 1;
+            Console.WriteLine($"\n{matrixName}");
 
-        Console.WriteLine("".PadRight(maxVertexNameLength + 2 + matrixWidth, '-'));
-
-        for (var i = 0; i < n; i++)
-        {
-            Console.Write($"{vertexNames[i]} |");
-            for (var j = 0; j < n; j++)
+            Console.Write("".PadRight(maxVertexNameLength + 2));
+            foreach (var name in vertexNames)
             {
-                Console.Write($" {matrix[i, j]} |".PadLeft(3));
+                Console.Write($" {name} ");
             }
             Console.WriteLine();
-        }
-    }
 
-    public static void PrintAdjacencyList(List<List<int>> adjacencyList, List<string> vertexNames)
-    {
-        for (var i = 0; i < adjacencyList.Count; i++)
-        {
-            Console.Write($"{vertexNames[i]} = {{ ");
-            var neighbors = adjacencyList[i];
-            for (var j = 0; j < neighbors.Count; j++)
+            Console.WriteLine("".PadRight(maxVertexNameLength + 2 + matrixWidth, '-'));
+
+            for (var i = 0; i < n; i++)
             {
-                Console.Write($"{neighbors[j]}");
-                if (j < neighbors.Count - 1)
+                Console.Write($"{vertexNames[i]} |");
+                for (var j = 0; j < n; j++)
                 {
-                    Console.Write(", ");
+                    Console.Write($" {matrix[i, j]} |".PadLeft(3));
                 }
+                Console.WriteLine();
             }
-            Console.WriteLine(" }");
+        }
+
+        public static void PrintAdjacencyList(List<List<int>> adjacencyList, List<int> vertexNames) // змінено
+        {
+            for (var i = 0; i < adjacencyList.Count; i++)
+            {
+                Console.Write($"{vertexNames[i]} = {{ ");
+                var neighbors = adjacencyList[i];
+                for (var j = 0; j < neighbors.Count; j++)
+                {
+                    Console.Write($"{neighbors[j]}");
+                    if (j < neighbors.Count - 1)
+                    {
+                        Console.Write(", ");
+                    }
+                }
+                Console.WriteLine(" }");
+            }
         }
     }
 }
