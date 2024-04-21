@@ -18,10 +18,10 @@ namespace Project
             var adjacencyMatrix = GraphGenerator.GenerateAdjacencyMatrix(edges, vertices);
             var adjacencyList = GraphGenerator.GenerateAdjacencyList(edges, vertices);
 
-            var vertexNames = new List<int>(); // змінено
-            for (int i = 1; i <= vertices; i++) // змінено
+            var vertexNames = new List<int>(); 
+            for (int i = 1; i <= vertices; i++) 
             {
-                vertexNames.Add(i); // змінено
+                vertexNames.Add(i); 
             }
 
             Print.PrintMatrix(adjacencyMatrix, vertexNames, "Adjacency Matrix:");
